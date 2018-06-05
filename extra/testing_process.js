@@ -17,7 +17,7 @@ function checkAllBalances() { var i =0;  console.log("          etheria: " + eth
 checkAllBalances();
 // CHECK INITIALIZATION
 etheria.getOwner(4,5); 																						// should be 0x0000000000000000000000000000000000000000 (40 zeros)
-etheria.makeOffer.sendTransaction(4,5,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')}); 		// whathappened = 4, purchase of unowned tile successful, 50169 gas used
+// etheria.makeOffer.sendTransaction(4,5,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')}); 		// whathappened = 4, purchase of unowned tile successful, 50169 gas used // NOTE: OFFER SYSTEM WAS REMOVED BEFORE ORIGINAL 2015 LAUNCH 
 etheria.getOwner(4,5);																						// should be all 0x0000000000000000000000000000000000000000 except 8,8 which should be 250000000000000000
 checkAllBalances();																							// check balances. should show creator++, buyer--
 etheria.farmTile.sendTransaction(0,33,{from:eth.accounts[2],gas:2000000}); 								    // whathappened = 30 out of bounds
@@ -62,16 +62,16 @@ etheria.makeOffer.sendTransaction(4,5,{from:eth.accounts[0],value:web3.toWei(.25
 
 checkAllBalances();																							// check balances. should be slightly less from gas payments.
 
+// NOTE: OFFER SYSTEM WAS REMOVED BEFORE ORIGINAL 2015 LAUNCH 
 // make, reject and retract offers
-etheria.makeOffer(4,5,{from:eth.accounts[0],gas:1000000, value:web3.toWei(.1,"ether")});                    // whathappened = 7
-etheria.makeOffer(4,5,{from:eth.accounts[2],gas:1000000, value:web3.toWei(.1,"ether")});					// whathappened = 5 (part 1), can't make offers on self-owned tiles.
-etheria.makeOffer(4,5,{from:eth.accounts[1],gas:1000000, value:web3.toWei(.11,"ether")});					// whathappened = 7
-etheria.makeOffer(4,5,{from:eth.accounts[3],gas:1000000, value:web3.toWei(.13,"ether")});					// whathappened = 7
-etheria.getOffers(4,5);																						// should show array of length 3 with the three offers above
-etheria.getOfferers(4,5);																					// should show array of length 3 with the three offerERS above
-checkAllBalances(); 																						// balance should be .44 at this moment, each of the offering accounts should be deducted by the appropriate amount
+//etheria.makeOffer(4,5,{from:eth.accounts[0],gas:1000000, value:web3.toWei(.1,"ether")});                    // whathappened = 7
+//etheria.makeOffer(4,5,{from:eth.accounts[2],gas:1000000, value:web3.toWei(.1,"ether")});					// whathappened = 5 (part 1), can't make offers on self-owned tiles.
+//etheria.makeOffer(4,5,{from:eth.accounts[1],gas:1000000, value:web3.toWei(.11,"ether")});					// whathappened = 7
+//etheria.makeOffer(4,5,{from:eth.accounts[3],gas:1000000, value:web3.toWei(.13,"ether")});					// whathappened = 7
+//etheria.getOffers(4,5);																						// should show array of length 3 with the three offers above
+//etheria.getOfferers(4,5);																					// should show array of length 3 with the three offerERS above
+//checkAllBalances(); 																						// balance should be .44 at this moment, each of the offering accounts should be deducted by the appropriate amount
 
-// THESE ARE OBSOLETE. retract and reject were combined into deleteOffer(col,row,index,amountinwei,{...});
 //etheria.retractOffer.sendTransaction(4,55,{from:eth.accounts[0],gas:1000000});								// whathappened = 60, c,r oob
 //etheria.retractOffer.sendTransaction(4,5,{from:eth.accounts[2],gas:1000000});								// whathappened = 62, couldn't find offer from that user -- because the user is the owner.
 //etheria.retractOffer.sendTransaction(4,5,{from:eth.accounts[3],gas:1000000});								// whathappened = 61, retract success
@@ -79,11 +79,11 @@ checkAllBalances(); 																						// balance should be .44 at this momen
 //etheria.rejectOffer.sendTransaction(4,5,1,{from:eth.accounts[0],gas:1000000});								// whathappened = 71 , this user does not own the tile.
 //etheria.rejectOffer.sendTransaction(4,5,-1,{from:eth.accounts[2],gas:1000000});								// whathappened = 72, index oob
 //etheria.rejectOffer.sendTransaction(4,5,1,{from:eth.accounts[2],gas:1000000});								// whathappened = 73, reject the middle offer
-etheria.getOffers(4,5);																						// should show array of length 2 with the middle one gone
-etheria.getOfferers(4,5);																					// should show array of length 2 with the middle one gone
-checkAllBalances();																							// should show contract balance of .33 with .11 returned to accounts[2]
-etheria.rejectOffer.sendTransaction(4,5,0,{from:eth.accounts[2],gas:1000000});								// whathappened = 73, reject the first offer in the array
-etheria.rejectOffer.sendTransaction(4,5,0,{from:eth.accounts[2],gas:1000000});								// whathappened = 73, reject the first offer in the array
+//etheria.getOffers(4,5);																						// should show array of length 2 with the middle one gone
+//etheria.getOfferers(4,5);																					// should show array of length 2 with the middle one gone
+//checkAllBalances();																							// should show contract balance of .33 with .11 returned to accounts[2]
+//etheria.rejectOffer.sendTransaction(4,5,0,{from:eth.accounts[2],gas:1000000});								// whathappened = 73, reject the first offer in the array
+//etheria.rejectOffer.sendTransaction(4,5,0,{from:eth.accounts[2],gas:1000000});								// whathappened = 73, reject the first offer in the array
 
 var batch = web3.createBatch();
 batch.add(etheria.editBlock.sendTransaction(15,9,0,[0,-50,-33,0,40], {from:eth.accounts[2],gas:2000000});
@@ -197,14 +197,14 @@ blockdefstorage.initAttachesto.sendTransaction(31, [[0,0,-1],[-1,1,-1],[-1,-1,-1
 //mapelevationstorage.initElevations.sendTransaction(32,[116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116,116], {from:eth.coinbase,gas:500000});
 
 
-etheria.makeOffer.sendTransaction(2,7,{from:eth.accounts[1],gas:1000000,value:web3.toWei(1,'ether')});
-etheria.makeOffer.sendTransaction(1,6,{from:eth.accounts[1],gas:1000000,value:web3.toWei(1,'ether')});
-etheria.makeOffer.sendTransaction(2,6,{from:eth.accounts[1],gas:1000000,value:web3.toWei(1,'ether')});
-etheria.makeOffer.sendTransaction(3,6,{from:eth.accounts[1],gas:1000000,value:web3.toWei(1,'ether')});
-etheria.makeOffer.sendTransaction(2,5,{from:eth.accounts[1],gas:1000000,value:web3.toWei(1,'ether')});
-etheria.makeOffer.sendTransaction(3,4,{from:eth.accounts[0],gas:1000000,value:web3.toWei(1,'ether')});
-etheria.makeOffer.sendTransaction(4,5,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')});
-etheria.makeOffer.sendTransaction(4,4,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')});
-etheria.makeOffer.sendTransaction(5,4,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')});
-etheria.makeOffer.sendTransaction(4,3,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')});
-etheria.makeOffer.sendTransaction(5,3,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')});
+//etheria.makeOffer.sendTransaction(2,7,{from:eth.accounts[1],gas:1000000,value:web3.toWei(1,'ether')});
+//etheria.makeOffer.sendTransaction(1,6,{from:eth.accounts[1],gas:1000000,value:web3.toWei(1,'ether')});
+//etheria.makeOffer.sendTransaction(2,6,{from:eth.accounts[1],gas:1000000,value:web3.toWei(1,'ether')});
+//etheria.makeOffer.sendTransaction(3,6,{from:eth.accounts[1],gas:1000000,value:web3.toWei(1,'ether')});
+//etheria.makeOffer.sendTransaction(2,5,{from:eth.accounts[1],gas:1000000,value:web3.toWei(1,'ether')});
+//etheria.makeOffer.sendTransaction(3,4,{from:eth.accounts[0],gas:1000000,value:web3.toWei(1,'ether')});
+//etheria.makeOffer.sendTransaction(4,5,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')});
+//etheria.makeOffer.sendTransaction(4,4,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')});
+//etheria.makeOffer.sendTransaction(5,4,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')});
+//etheria.makeOffer.sendTransaction(4,3,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')});
+//etheria.makeOffer.sendTransaction(5,3,{from:eth.accounts[2],gas:1000000,value:web3.toWei(1,'ether')});
