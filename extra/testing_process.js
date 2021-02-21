@@ -86,8 +86,8 @@ checkAllBalances();																							// check balances. should be slightly 
 //etheria.rejectOffer.sendTransaction(4,5,0,{from:eth.accounts[2],gas:1000000});								// whathappened = 73, reject the first offer in the array
 
 var batch = web3.createBatch();
-batch.add(etheria.editBlock.sendTransaction(15,9,0,[0,-50,-33,0,40], {from:eth.accounts[2],gas:2000000});
-web3.eth.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
+//batch.add(etheria.editBlock.sendTransaction(15,9,0,[0,-50,-33,0,40], {from:eth.accounts[2],gas:2000000});
+//web3.eth.getBalance.request('0x0000000000000000000000000000000000000000', 'latest', callback));
 batch.add(web3.eth.contract(abi).at(address).balance.request(address, callback2));
 batch.execute();
 
